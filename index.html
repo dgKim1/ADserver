@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>동물이름을 입력하세요!</p>
+    <input id="name" type="text" /> <button onclick="getAnimal()">동물이름 입력</button>
+    <h1>입력하신 동물은?!</h1>
+    <h2 id='animalName'></h2>
+    <h3 id='animalAge'></h3>
+    <h3 id='animalSound'></h3>
+    <script>
+            function getAnimal(){
+                const name = document.getElementById('name').value
+                fetch(`http://localhost:8080/${name}`)
+                .then((response) => response.json())
+                .then((data) =>{ 
+                    document.getElementById('animalName').innerHTML = data.name
+                    document.getElementById('animalAge').innerHTML = data.age
+                    document.getElementById('animalSound').innerHTML = data.sound
+                });
+                console.log("ok")
+            }
+    </script>
+    
+</body>
+</html>
